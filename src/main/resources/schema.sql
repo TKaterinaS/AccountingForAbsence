@@ -1,12 +1,9 @@
-DROP TABLE IF EXISTS employee;
 CREATE TABLE employee
 (
     employee_id BIGSERIAL   NOT NULL PRIMARY KEY,
-    first_name  VARCHAR(30) NOT NULL,
     last_name   VARCHAR(30) NOT NULL,
-    salary      INT         NOT NULL
+    first_name  VARCHAR(30) NOT NULL
 );
-DROP TABLE IF EXISTS absence;
 CREATE TABLE absence
 (
     id          BIGSERIAL     NOT NULL PRIMARY KEY,
@@ -15,6 +12,7 @@ CREATE TABLE absence
     duration    INT           NOT NULL,
     discounted  BOOLEAN       NOT NULL,
     description VARCHAR(1024) NOT NULL,
-    employee_id INT           NOT NULL,
-    FOREIGN KEY (employee_id) REFERENCES employee (employee_id)
+    employee_id INT           NOT NULL
 );
+ALTER TABLE absence
+ADD COLUMN employee_id BIGINT REFERENCES employee(employee_id);

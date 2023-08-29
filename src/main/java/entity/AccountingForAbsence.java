@@ -1,14 +1,12 @@
 package entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 
@@ -19,55 +17,47 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Table(name = "absence")
 public class AccountingForAbsence {
-    public static final String DESCRIPTION = "^[а-яА-Я]+$";
-    @jakarta.persistence.Id
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     /**
      * id - записи отчета
      */
-    @Column(name = "id")
-    @NotEmpty
-    private int id;
+    @Column (name = "id")
+    private Long id;
 
     /**
      * reason - причина отсутствия
      */
-    @Column(name = "reason")
-    @NotEmpty
+    @Column (name = "reason")
     private int reason;
 
     /**
      * start_date - дата начала отсутствия сотрудника на рабочем месте
      */
-    @Column(name = "start_date")
-    @NotEmpty
-    private Date start_date;
+    @Column (name = "start_date")
+    private Date startDate;
 
     /**
      * duration - продолжительность (раб.дней) отсутствия сотрудника на рабочем месте
      */
-    @Column(name = "duration")
-    @NotEmpty
+    @Column (name = "duration")
     private int duration;
 
     /**
      * discounted - учтено при оплате
      */
-    @Column(name = "discounted")
-    @NotEmpty
+   @Column (name = "discounted")
     private boolean discounted;
 
     /**
      * description - комментарий
      */
-    @Column(name = "description")
-    @NotEmpty
-    @Size(max = 1024)
-    @Pattern(regexp = DESCRIPTION)
+    @Column (name = "description")
     private String description;
 
     /**

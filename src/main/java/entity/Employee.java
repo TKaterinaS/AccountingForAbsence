@@ -1,13 +1,13 @@
 package entity;
+import javax.persistence.*;
+import javax.persistence.GeneratedValue;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 /**
  * Класс сущности "Employee" ("Сотрудник")
@@ -15,43 +15,30 @@ import javax.validation.constraints.Size;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Table (name = "employees")
 public class Employee {
 
-    @jakarta.persistence.Id
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     /**
      * id сотрудника
      */
     @Column (name = "employee_id")
-    @NotEmpty
-    @Size(max = 30)
-    private int employee_id;
+    private Long employeeId;
 
     /**
      * first_name - Фамилия сотрудника
      */
     @Column (name = "first_name")
-    @NotEmpty
-    @Size(max = 30)
-    private String first_name;
+    private String firstName;
 
     /**
      * last_name - Имя сотрудника
      */
     @Column (name = "last_name")
-    @NotEmpty
-    @Size(max = 30)
-    private String last_name;
-
-    /**
-     * salary - Зарплата сотрудника
-     */
-    @Column (name = "salary")
-    @NotEmpty
-    private int salary;
+    private String lastName;
 
     /**
      * AccountingForAbsence absence объект сущности отчета отсутствия сотрудника на рабочем месте
